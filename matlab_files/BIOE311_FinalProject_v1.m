@@ -88,13 +88,13 @@ p3noise = randomize2(p3, pnoise, L);
 
 %% evaluate PDEsusing diffp and diffm functions
 for t = 1:numStepsT
-m1 = diffm(m1, alpha, alpha0, p3, dx, t, dt, mnoise, C);
-m2 = diffm(m2, alpha, alpha0, p2, dx, t, dt, mnoise, C);
-m3 = diffm(m3, alpha, alpha0, p1, dx, t, dt, mnoise, C);
+    m1 = diffm(m1, alpha, alpha0, p3, dx, t, dt, mnoise, C);
+    m2 = diffm(m2, alpha, alpha0, p2, dx, t, dt, mnoise, C);
+    m3 = diffm(m3, alpha, alpha0, p1, dx, t, dt, mnoise, C);
 
-p1 = diffp(p1, Dp1, beta, m1, dx, t, dt, pnoise, C);
-p2 = diffp(p2, Dp2, beta, m2, dx, t, dt, pnoise, C);
-p3 = diffp(p3, Dp3, beta, m3, dx, t, dt, pnoise, C);
+    p1 = diffp(p1, Dp1, beta, m1, dx, t, dt, pnoise, C);
+    p2 = diffp(p2, Dp2, beta, m2, dx, t, dt, pnoise, C);
+    p3 = diffp(p3, Dp3, beta, m3, dx, t, dt, pnoise, C);
 end
 
 %%
