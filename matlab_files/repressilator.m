@@ -1,20 +1,26 @@
-classdef repressilator
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Main class for final project
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    properties 
-        species = []
-        parameters = []
-        sim_param = []   
+classdef repressilator < handle
+    properties
+        length
+        width
+        initCond
+        D_pi
+        param
+        noiseParam
     end
     
     methods
+        %Constructor
         function obj = repressilator()
+        
+        end
+       
+        function simulate()
+   
         end
         
-        function out = run 
-        
-    end
     
+    % nonlinearity static methods
+    methods(static)
+    
+    end
 end
