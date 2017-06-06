@@ -5,8 +5,10 @@ L=3;
 W=4;
 
 %initial conditions
-initCond = zeros(L,W, 6);
-initCond(:,:,4) = ones(L,W);
+initCond = zeros(L,W,6);
+initCond(:,:,2) = ones(L,W);
+initCond(:,:,4) = ones(L,W)*2;
+initCond(:,:,6) = ones(L,W)* 5;
 
 %diffusion constants
 Dp1 = 0;
@@ -15,9 +17,9 @@ Dp3 = 0;
 D_pi = [Dp1 Dp2 Dp3];
 
 %diff eq parameters
-alpha = 5*10^-1;
-alpha0 = 5*10^-4;
-beta = 300;
+alpha = 1000;
+alpha0 = 1;
+beta = 5;
 param = [alpha alpha0 beta];
 
 %noise parameters
@@ -26,8 +28,8 @@ pnoise = 0; %mnoise/10;
 noiseParam = [mnoise pnoise];
 
 %time simulation parameters
-t = 100;
-dt = 0.1;
+t = 10000;
+dt = 3;
 
 %periodicity
 periodic_x = 0;
@@ -61,7 +63,7 @@ colorbar;
 title('T=10');
 
 subplot(2,2,3);
-imagesc(p1(:,:,500));
+imagesc(p1(:,:,end/2));
 colorbar;
 title('T=30');
 

@@ -94,9 +94,9 @@ classdef repressilator
                 m2(:,:,t+1) = max(0, m2(:,:,t) + obj.diffm(m2(:,:,t), alpha, alpha0, p3(:,:,t), m2noise, dt));
                 m3(:,:,t+1) = max(0, m3(:,:,t) + obj.diffm(m3(:,:,t), alpha, alpha0, p1(:,:,t), m3noise, dt));
 
-                p1(:,:,t+1) = max(0, p1(:,:,t) +obj.diffp(p1(:,:,t), Dp1, beta, m1(:,:,t), dxy, dt, numStepsT, C_x, C_y, p1noise));
+                p1(:,:,t+1) = max(0, p1(:,:,t) + obj.diffp(p1(:,:,t), Dp1, beta, m1(:,:,t), dxy, dt, numStepsT, C_x, C_y, p1noise));
                 p2(:,:,t+1) = max(0, p2(:,:,t) + obj.diffp(p2(:,:,t), Dp2, beta, m2(:,:,t), dxy, dt, numStepsT, C_x, C_y, p2noise));
-                p3(:,:,t+1) = max(0, p3(:,:,t) +obj.diffp(p3(:,:,t), Dp3, beta, m3(:,:,t), dxy, dt, numStepsT, C_x, C_y, p3noise));
+                p3(:,:,t+1) = max(0, p3(:,:,t) + obj.diffp(p3(:,:,t), Dp3, beta, m3(:,:,t), dxy, dt, numStepsT, C_x, C_y, p3noise));
             end
             % return values
             output = struct('m1', m1, 'm2', m2, 'm3', m3, ...
@@ -141,13 +141,13 @@ classdef repressilator
         end
 
         % diff eq for mRNAs
-        function dm = diffm(obj, m, alpha, alpha0, p, noise, dt)
+        function dm = diffm(obj, m, alpha, alpha0, Km, Kp, p, noise, dt)
             % calcualte differential
-            dm = dt*(alpha ./ (1 + p.^2) - m  + alpha0 + noise);
+            dm = dt*(alpha ./ (1 + p.^2.1) - m  + alpha0 + noise);
         end
 
         % diff eq for proteins
-        function dp = diffp(obj, p, diff, beta, m, dx, dt, numStepsT, C_x, C_y, noise)
+        function dp = diffp(obj, p, diff, beta, Km, Kp, m, dx, dt, numStepsT, C_x, C_y, noise)
             % calculate differential
             dp = dt*(beta*(m - p) + ((diff)/(dx)^2)*(C_y*p+ p*C_x) + noise);
         end
