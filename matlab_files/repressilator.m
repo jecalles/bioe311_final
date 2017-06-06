@@ -141,13 +141,13 @@ classdef repressilator
         end
 
         % diff eq for mRNAs
-        function dm = diffm(obj, m, alpha, alpha0, Km, Kp, p, noise, dt)
+        function dm = diffm(obj, m, alpha, alpha0, p, noise, dt)
             % calcualte differential
             dm = dt*(alpha ./ (1 + p.^2.1) - m  + alpha0 + noise);
         end
 
         % diff eq for proteins
-        function dp = diffp(obj, p, diff, beta, Km, Kp, m, dx, dt, numStepsT, C_x, C_y, noise)
+        function dp = diffp(obj, p, diff, beta, m, dx, dt, numStepsT, C_x, C_y, noise)
             % calculate differential
             dp = dt*(beta*(m - p) + ((diff)/(dx)^2)*(C_y*p+ p*C_x) + noise);
         end

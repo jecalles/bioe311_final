@@ -45,19 +45,28 @@ sim = repressilator(L, W, initCond, D_pi, param, noiseParam, periodicity);
 output = sim.simulate(t, dt);
 
 %% plot output
-p2 = output.p2;
+m1 = output.m1;
 p1 = output.p1;
+p2 = output.p2;
+p3 = output.p3;
 
 figure(1)
+subplot(1,2,1);
 hold on;
 plot(squeeze(p1(3,3,:)), '--r');
-plot(squeeze(p2(3,3,:)), '--b');
+plot(squeeze(p2(3,3,:)), '--g');
+plot(squeeze(p3(3,3,:)), '--b');
 hold off;
-title('TetR species vs Time');
-legend('p1', 'm1');
+title('Protein Levels vs Time');
+xlabel('Time');
+ylabel('Conc (arb)');
+legend('p1', 'p2', 'p3');
 
 figure(2)
-plot(squeeze(m1(3,3,:)),squeeze(p1(3,3,:)))
+plot(squeeze(m1(3,3,:)),squeeze(p1(3,3,:)));
+title('P1 vs M1 Trajectory');
+xlabel('m1 (arb)');
+ylabel('p1 (arb)');
 
 %
 
