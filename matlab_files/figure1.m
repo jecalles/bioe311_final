@@ -62,12 +62,23 @@ xlabel('Time');
 ylabel('Conc (arb)');
 legend('p1', 'p2', 'p3');
 
-figure(2)
+subplot(1,2,2);
 plot(squeeze(m1(3,3,:)),squeeze(p1(3,3,:)));
 title('P1 vs M1 Trajectory');
 xlabel('m1 (arb)');
 ylabel('p1 (arb)');
 
-%
+% make a gif!
+figure(2)
+obj = VideoWriter('Repressilator (No Noise, No Diffusion)'); 
+open(obj);
+
+for t = 1:length(p1(1,1,:))
+        Z = sin(n*pi.*x/L) * ( A* sin(c*n*pi*t/L) * cos(c*n*pi*t/L) );
+        plot(x,Z); ylim([-(A+B)/4,(A+B)/4])
+        frame = getframe(gcf);
+        writeVideo(obj, frame);
+end
+close(obj);
 
 
