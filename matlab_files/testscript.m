@@ -57,8 +57,7 @@ title('TetR species vs Time');
 legend('p1', 'm1');
 
 figure(2)
-plot(squeeze(m1(3,3,:)),squeeze(p1(3,3,:)))
+plot(squeeze(m1(3,3,:)),squeeze(p1(3,3,:))
 
 %
-
 
